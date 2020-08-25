@@ -1,6 +1,12 @@
 package uconn.utils.pid;
 
 public class Candidate {
+    /*! \mainpage java classes with PID functions
+     * \section Introduction
+     * It's a collection of Java classes to be used for PID and event selections.
+     * Go to Classes and Examples.
+    */
+
     /// This is the enum for magnetic field configuation
     protected enum MagField {
         INBENDING, ///< inbending
