@@ -1,8 +1,18 @@
 package uconn.utils.pid.stefan;
 
-public class PipCuts {
+public class HadronCuts {
 
-    public static boolean DC_fiducial_cut_theta_phi(int j, int region) {
+    /**
+     * DC fiducial cut for hadrons
+     * @param dc_sector sector of hits in DC
+     * @param region specify fiducial cuts for which region to use
+     * @param trajx x for region 1 or 2 or 3 from REC::Traj
+     * @param trajy y for region 1 or 2 or 3 from REC::Traj
+     * @param trajz z for region 1 or 2 or 3 from REC::Traj
+     * @param partpid pid assigned to particle candidate
+     * @param isinbending True if magnetic field is inbending
+     */
+    public static boolean DC_fiducial_cut_theta_phi(int dc_sector, int region, double trajx, double trajy, double trajz, int partpid, boolean isinbending) {
 
         //fitted values inbending:
 
@@ -188,36 +198,13 @@ public class PipCuts {
             }
         };
 
-        double[][][][] minparams = inbending ? minparams_in : minparams_out;
-        double[][][][] maxparams = inbending ? maxparams_in : maxparams_out;
+        double[][][][] minparams = isinbending ? minparams_in : minparams_out;
+        double[][][][] maxparams = isinbending ? maxparams_in : maxparams_out;
 
-        double theta_DCr = 5000;
-        double phi_DCr_raw = 5000;
 
-        switch (region)
-        {
-        case 1:
-            theta_DCr = 180 / Pival * acos(part_DC_c1z[j] / sqrt(pow(part_DC_c1x[j],2) + pow(part_DC_c1y[j],2) + pow(part_DC_c1z[j],2)));
-            phi_DCr_raw = 180 / Pival * atan2(part_DC_c1y[j] / sqrt(pow(part_DC_c1x[j],2) + pow(part_DC_c1y[j],2) + pow(part_DC_c1z[j],2)),
-                                              part_DC_c1x[j] /sqrt(pow(part_DC_c1x[j],2) + pow(part_DC_c1y[j],2) + pow(part_DC_c1z[j],2)));
-            break;
-
-        case 2:
-            theta_DCr = 180 / Pival * acos(part_DC_c2z[j] / sqrt(pow(part_DC_c2x[j],2) + pow(part_DC_c2y[j],2) + pow(part_DC_c2z[j],2)));
-            phi_DCr_raw = 180 / Pival * atan2(part_DC_c2y[j] / sqrt(pow(part_DC_c2x[j],2) + pow(part_DC_c2y[j],2) + pow(part_DC_c2z[j],2)),
-                                              part_DC_c2x[j] /sqrt(pow(part_DC_c2x[j],2) + pow(part_DC_c2y[j],2) + pow(part_DC_c2z[j],2)));
-            break;
-
-        case 3:
-            theta_DCr = 180 / Pival * acos(part_DC_c3z[j] / sqrt(pow(part_DC_c3x[j],2) + pow(part_DC_c3y[j],2) + pow(part_DC_c3z[j],2)));
-            phi_DCr_raw = 180 / Pival * atan2(part_DC_c3y[j] / sqrt(pow(part_DC_c3x[j],2) + pow(part_DC_c3y[j],2) + pow(part_DC_c3z[j],2)),
-                                              part_DC_c3x[j] /sqrt(pow(part_DC_c3x[j],2) + pow(part_DC_c3y[j],2) + pow(part_DC_c3z[j],2)));
-            break;
-
-        default:
-            return false;
-            break;
-        }
+        double trajr = Math.sqrt(Math.pow(trajx,2) + Math.pow(trajy,2) + Math.pow(trajz,2));
+        double theta_DCr = Math.toDegrees(Math.acos(trajz/trajr));
+        double phi_DCr_raw = Math.toDegrees(Math.atan2(trajy/trajr, trajx/trajr));
 
         double phi_DCr = 5000;
 
@@ -231,7 +218,7 @@ public class PipCuts {
 
         int pid = 0;
 
-        switch (part_pid[j])
+        switch (partpid)
         {
         case 11:
             pid = 0;
@@ -264,58 +251,29 @@ public class PipCuts {
 
 
 
-    bool prot_delta_vz_cut(int j) {
-
-        double dvz_min = -20.0;
-        double dvz_max = 20.0;
-
-        if(Getdvz(j) > dvz_min && Getdvz(j) < dvz_max) return true;
-        else return false;
+    /** Delta VZ cut for hadrons
+     * @param pid hadron PID code
+     * @param dvz difference between Vz of hadron candidate and electron
+    */
+    public static boolean delta_vz_cut(int pid, double dvz) {
+        switch(pid) {
+        case 2212:
+            return dvz>-20 && dvz<20;
+        case 22:
+            return dvz>-20 && dvz<20;
+        case 2112:
+            return dvz>-20 && dvz<20;
+        case 211:
+            return dvz>-20 && dvz<20;
+        case -211:
+            return dvz>-20 && dvz<20;
+        case 321:
+            return dvz>-20 && dvz<20;
+        case -321:
+            return dvz>-20 && dvz<20;
+        }
+        return false;
     }
 
-    bool neutr_delta_vz_cut(int j) {
-
-        double dvz_min = -20.0;
-        double dvz_max = 20.0;
-
-        if(Getdvz(j) > dvz_min && Getdvz(j) < dvz_max) return true;
-        else return false;
-    }
-
-    bool pip_delta_vz_cut(int j) {
-
-        double dvz_min = -20.0;
-        double dvz_max = 20.0;
-
-        if(Getdvz(j) > dvz_min && Getdvz(j) < dvz_max) return true;
-        else return false;
-    }
-
-    bool pim_delta_vz_cut(int j) {
-
-        double dvz_min = -20.0;
-        double dvz_max = 20.0;
-
-        if(Getdvz(j) > dvz_min && Getdvz(j) < dvz_max) return true;
-        else return false;
-    }
-
-    bool Kp_delta_vz_cut(int j) {
-
-        double dvz_min = -20.0;
-        double dvz_max = 20.0;
-
-        if(Getdvz(j) > dvz_min && Getdvz(j) < dvz_max) return true;
-        else return false;
-    }
-
-    bool Km_delta_vz_cut(int j) {
-
-        double dvz_min = -20.0;
-        double dvz_max = 20.0;
-
-        if(Getdvz(j) > dvz_min && Getdvz(j) < dvz_max) return true;
-        else return false;
-    }
 
 }
