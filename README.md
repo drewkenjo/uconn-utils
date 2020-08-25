@@ -1,4 +1,4 @@
-# uconn-utils
+# uconn-java-utils
 JAVA tools for CLAS12 analysis
 
 ## Usage: ##
