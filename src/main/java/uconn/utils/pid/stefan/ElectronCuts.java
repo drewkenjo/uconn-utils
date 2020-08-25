@@ -117,7 +117,7 @@ public class ElectronCuts {
 
     /**
      * @param dc_sector sector of hits in DC
-     * @param region
+     * @param region specify fiducial cuts for which region to use
      * @param x x for region 1 or 2 or 3 from REC::Traj
      * @param y y for region 1 or 2 or 3 from REC::Traj
      * @param partpid pid assigned to particle candidate
