@@ -3,15 +3,6 @@ package uconn.utils.pid.stefan;
 public class ElectronCuts {
 
     /**
-     * PID cut
-     * @param pid PDG code
-     */
-    public static boolean PID_cut(int pid) {
-        return pid==11;
-    }
-
-
-    /**
      * Cherenkov nphe cut
      * @param nphe number of photoelectrons
      */
