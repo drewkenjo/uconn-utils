@@ -6,3 +6,5 @@ In order to use this package with Groovy, go to release page: https://github.com
 
 ## Documentation: ##
 https://drewkenjo.github.io/uconn-java-utils/annotated.html
+
+Go to Examples for simple scripts illustrating how PID selection works.
