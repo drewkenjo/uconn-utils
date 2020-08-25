@@ -37,7 +37,7 @@ public class ElectronCandidate extends Candidate {
         ElectronCandidate candidate = new ElectronCandidate();
         if(recbank!=null) {
             candidate.setPID(recbank.getInt("pid",ipart));
-            candidate.setVZ((double) recbank.getFloat("vz",ipart));
+            candidate.setVZ(recbank.getFloat("vz",ipart));
             candidate.setPxyz(recbank.getFloat("px",ipart), recbank.getFloat("py",ipart), recbank.getFloat("pz",ipart));
         }
         if(ccbank!=null) IntStream.range(0,ccbank.rows()).filter(i -> ccbank.getShort("pindex",i) == ipart && ccbank.getByte("detector",i) == DetectorType.HTCC.getDetectorId())
@@ -102,7 +102,7 @@ public class ElectronCandidate extends Candidate {
         for(Cut thiscut: applycuts) {
             if(thiscut == Cut.ELE_PID) {
                 if(pid==null) return false;
-                else if(!ElectronCuts.PID_cut(pid)) return false;
+                else if(pid!=11) return false;
             } else if(thiscut == Cut.CC_NPHE) {
                 if(nphe==null) return false;
                 else if(!ElectronCuts.CC_nphe_cut(nphe)) return false;
