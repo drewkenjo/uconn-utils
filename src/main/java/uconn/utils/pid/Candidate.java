@@ -26,6 +26,7 @@ public class Candidate {
     protected Float py = null; ///< px momentum
     protected Float pz = null; ///< px momentum
     protected Float vz = null; ///< z vertex
+    protected Float dvz = null; ///< the difference between trigger particle vz and candidate vz
     protected Float traj_x1 = null; ///< x-position of the track at the detector surface (cm) at region 1
     protected Float traj_y1 = null; ///< y-position of the track at the detector surface (cm) at region 1
     protected Float traj_z1 = null; ///< z-position of the track at the detector surface (cm) at region 1
@@ -74,6 +75,14 @@ public class Candidate {
      */
     public void setVZ(Number vz) {
         this.vz = vz==null ? null : vz.floatValue();
+    }
+
+
+    /**
+     * @param dvz set the difference between vertex z position of candidate and trigger particle
+     */
+    public void setDVZ(Number dvz) {
+        this.dvz = dvz==null ? null : dvz.floatValue();
     }
 
 
