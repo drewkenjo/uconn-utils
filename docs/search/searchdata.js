@@ -1,8 +1,8 @@
 var indexSectionsWithContent =
 {
   0: "cdefghijmnopstv",
-  1: "cehm",
-  2: "cdegips",
+  1: "cehmp",
+  2: "cdegis",
   3: "cdefinoptv",
   4: "j"
 };
