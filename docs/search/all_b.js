@@ -1,12 +1,13 @@
 var searchData=
 [
-  ['traj_5fx1_52',['traj_x1',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#adb59f60616ff7edf7059dd373b12ccd2',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fx2_53',['traj_x2',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a2c628855b5950f1148f07a887e6d7013',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fx3_54',['traj_x3',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a0e33384697c7aee0b534c8b514100ec6',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fy1_55',['traj_y1',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a508cf1de4c75306be2d47d72b2757867',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fy2_56',['traj_y2',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a4f4deeb043d08383cddd47c05a458a66',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fy3_57',['traj_y3',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#abb3001177e6cfbebf675bd25ca2f5d93',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fz1_58',['traj_z1',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a883a7d1a94136fc9036a20f9fed33727',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fz2_59',['traj_z2',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#aa2429d3726e70c6cbcf0bad3521a0f53',1,'uconn::utils::pid::Candidate']]],
-  ['traj_5fz3_60',['traj_z3',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#ab5a6c7062a1f3ea1c6a50b48445e01b0',1,'uconn::utils::pid::Candidate']]]
+  ['p_34',['p',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a89f00630b3729077a42882b7aa2ce9e4',1,'uconn::utils::pid::Candidate']]],
+  ['pcal_5fenergy_35',['pcal_energy',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a075e050aa885ae1da8a93ecdf09fc8ac',1,'uconn::utils::pid::Candidate']]],
+  ['pcal_5flv_36',['pcal_lv',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#af50d26cd166f8b1b7bdfcaba4a904b61',1,'uconn::utils::pid::Candidate']]],
+  ['pcal_5flw_37',['pcal_lw',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a8243ad327dc8bb4230d436fe5776b524',1,'uconn::utils::pid::Candidate']]],
+  ['pcal_5fsector_38',['pcal_sector',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#ac7a627475896e43cb13db0f4c65c9860',1,'uconn::utils::pid::Candidate']]],
+  ['pid_39',['pid',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#ad9959a0920538314bba0b3eaa2db1c03',1,'uconn::utils::pid::Candidate']]],
+  ['pid_5fcut_40',['PID_cut',['../classuconn_1_1utils_1_1pid_1_1stefan_1_1ElectronCuts.html#ae0e0d6a8a2f32fc8e116f89cb868b8c1',1,'uconn::utils::pid::stefan::ElectronCuts']]],
+  ['px_41',['px',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a1224187e16e8c4f5a34cb514027a0c0d',1,'uconn::utils::pid::Candidate']]],
+  ['py_42',['py',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a01378f7ed8c5ed926420c0dec26372e9',1,'uconn::utils::pid::Candidate']]],
+  ['pz_43',['pz',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#aa6c19d44f00043ebdc56800689f7e82c',1,'uconn::utils::pid::Candidate']]]
 ];
