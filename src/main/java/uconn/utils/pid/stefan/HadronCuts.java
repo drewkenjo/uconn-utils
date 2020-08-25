@@ -255,7 +255,7 @@ public class HadronCuts {
      * @param pid hadron PID code
      * @param dvz difference between Vz of hadron candidate and electron
     */
-    public static boolean delta_vz_cut(int pid, double dvz) {
+    public static boolean Delta_vz_cut(int pid, double dvz) {
         switch(pid) {
         case 2212:
             return dvz>-20 && dvz<20;
