@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['nphe_37',['nphe',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#a52b403e2197f1bbdbdfc55f42cc41c04',1,'uconn::utils::pid::Candidate']]]
+  ['magfield_39',['MagField',['../classuconn_1_1utils_1_1pid_1_1Candidate.html#enumuconn_1_1utils_1_1pid_1_1Candidate_1_1MagField',1,'uconn::utils::pid::Candidate']]]
 ];
