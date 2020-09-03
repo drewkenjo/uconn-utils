@@ -41,7 +41,7 @@ public class ElectronCandidate extends Candidate {
             candidate.setPxyz(recbank.getFloat("px",ipart), recbank.getFloat("py",ipart), recbank.getFloat("pz",ipart));
         }
         if(ccbank!=null) IntStream.range(0,ccbank.rows()).filter(i -> ccbank.getShort("pindex",i) == ipart && ccbank.getByte("detector",i) == DetectorType.HTCC.getDetectorId())
-            .findAny().ifPresent(i -> candidate.setNPHE(ccbank.getFloat("nphe", i)));
+            .findFirst().ifPresent(i -> candidate.setNPHE(ccbank.getFloat("nphe", i)));
 
         if(calbank!=null) IntStream.range(0,calbank.rows())
             .filter(i -> calbank.getShort("pindex",i) == ipart && calbank.getByte("detector",i) == DetectorType.ECAL.getDetectorId())

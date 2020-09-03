@@ -7,9 +7,16 @@ import org.jlab.io.base.DataBank;
 import uconn.utils.pid.Candidate;
 
 public class PionCandidate extends Candidate {
+    /// This is the enum for cut strength
+    public enum Level {
+        STANDARD, ///< standard strength
+        STRICT, ///< strict strength
+    }
+
     /// This is the enum for pi+ cut types
     public enum Cut {
         PION_PID, ///< cut on PDG code
+        CHI2PID_CUT, ///< cut on chi2pid
         DC_FIDUCIAL_REG1, ///< fiducial DC cut for region 1
         DC_FIDUCIAL_REG2, ///< fiducial DC cut for region 2
         DC_FIDUCIAL_REG3, ///< fiducial DC cut for region 3
@@ -33,6 +40,8 @@ public class PionCandidate extends Candidate {
         PionCandidate candidate = new PionCandidate();
         if(recbank!=null) {
             candidate.setPID(recbank.getInt("pid",ipart));
+            candidate.setCHI2PID(recbank.getFloat("chi2pid",ipart));
+            candidate.setVZ(recbank.getFloat("vz",ipart));
             candidate.setDVZ(recbank.getFloat("vz",ipart) - recbank.getFloat("vz",0));
             candidate.setPxyz(recbank.getFloat("px",ipart), recbank.getFloat("py",ipart), recbank.getFloat("pz",ipart));
         }
@@ -84,6 +93,9 @@ public class PionCandidate extends Candidate {
             if(thiscut == Cut.PION_PID) {
                 if(pid==null) return false;
                 else if(pid!=-211) return false;
+            } else if(thiscut == Cut.CHI2PID_CUT) {
+                if(pid==null || chi2pid==null || p==null) return false;
+                else if(!HadronCuts.Chi2pid_cut(chi2pid, p, pid)) return false;
             } else if(thiscut == Cut.DC_FIDUCIAL_REG1) {
                 if(dc_sector==null || traj_x1==null || traj_y1==null || traj_z1==null || pid==null) return false;
                 else if(!HadronCuts.DC_fiducial_cut_theta_phi(dc_sector, 1, traj_x1, traj_y1, traj_z1, pid, field==MagField.INBENDING)) return false;
@@ -123,6 +135,9 @@ public class PionCandidate extends Candidate {
             if(thiscut == Cut.PION_PID) {
                 if(pid==null) return false;
                 else if(pid!=211) return false;
+            } else if(thiscut == Cut.CHI2PID_CUT) {
+                if(pid==null || chi2pid==null || p==null) return false;
+                else if(!HadronCuts.Chi2pid_cut(chi2pid, p, pid)) return false;
             } else if(thiscut == Cut.DC_FIDUCIAL_REG1) {
                 if(dc_sector==null || traj_x1==null || traj_y1==null || traj_z1==null || pid==null) return false;
                 else if(!HadronCuts.DC_fiducial_cut_theta_phi(dc_sector, 1, traj_x1, traj_y1, traj_z1, pid, field==MagField.INBENDING)) return false;
