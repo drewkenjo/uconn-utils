@@ -276,4 +276,30 @@ public class HadronCuts {
     }
 
 
+
+    /** chi2pid cut for hadrons
+     * @param chi2pid chi2pid value
+     * @param pid hadron PID code
+    */
+    public static boolean Chi2pid_cut(double chi2pid, double p, int pid) {
+        boolean isstrict = false;
+
+        double coef;
+        if(pid==211) coef = 0.88;
+        else if(pid==-211) coef = 0.93;
+        else return false;
+
+        boolean chi2cut = false;
+        if(isstrict) {
+          if(p<2.44) chi2cut = chi2pid < 3*coef;
+          else if(p<4.6) chi2cut = chi2pid < coef*(0.00869 + 14.98587*Math.exp(-p/1.18236) + 1.81751*Math.exp(-p/4.86394));
+          else chi2cut = chi2pid<coef*(-1.14099 + 24.14992*Math.exp(-p/1.36554) + 2.66876*Math.exp(-p/6.80522));
+        } else {
+          if(p<2.44) chi2cut = chi2pid < 3*coef;
+          else chi2cut = chi2pid < coef*(0.00869 + 14.98587*Math.exp(-p/1.18236) + 1.81751*Math.exp(-p/4.86394));
+        }
+
+        return chi2cut && chi2pid>coef*-3;
+    }
+
 }
