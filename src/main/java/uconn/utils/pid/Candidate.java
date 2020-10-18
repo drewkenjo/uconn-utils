@@ -39,6 +39,7 @@ public class Candidate {
     protected Float traj_z3 = null; ///< z-position of the track at the detector surface (cm) at region 3
     protected Integer pid = null; ///< particle PID
     protected Integer dc_sector = null; ///< dc sector
+    protected Short status = null; ///< particle status
 
 
     /**
@@ -100,6 +101,14 @@ public class Candidate {
      */
     public void setPID(Number pid) {
         this.pid = pid==null ? null : pid.intValue();
+    }
+
+
+    /**
+     * @param pid set particle status
+     */
+    public void setStatus(Number status) {
+        this.status = status==null ? null : status.shortValue();
     }
 
 
