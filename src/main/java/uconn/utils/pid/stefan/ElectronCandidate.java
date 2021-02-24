@@ -1,9 +1,9 @@
 package uconn.utils.pid.stefan;
 
+import org.jlab.jnp.hipo4.data.Bank;
 import org.jlab.clas.physics.LorentzVector;
 import org.jlab.detector.base.DetectorType;
 import java.util.stream.IntStream;
-import org.jlab.io.base.DataBank;
 import uconn.utils.pid.Candidate;
 
 public class ElectronCandidate extends Candidate {
@@ -33,17 +33,17 @@ public class ElectronCandidate extends Candidate {
     * return ElectronCandidate instance
     * @param applycuts the list of cuts required to apply
     */
-    public static ElectronCandidate getElectronCandidate(int ipart, DataBank recbank, DataBank calbank, DataBank ccbank, DataBank trajbank) {
+    public static ElectronCandidate getElectronCandidate(int ipart, Bank recbank, Bank calbank, Bank ccbank, Bank trajbank) {
         ElectronCandidate candidate = new ElectronCandidate();
         if(recbank!=null) {
             candidate.setPID(recbank.getInt("pid",ipart));
             candidate.setVZ(recbank.getFloat("vz",ipart));
             candidate.setPxyz(recbank.getFloat("px",ipart), recbank.getFloat("py",ipart), recbank.getFloat("pz",ipart));
         }
-        if(ccbank!=null) IntStream.range(0,ccbank.rows()).filter(i -> ccbank.getShort("pindex",i) == ipart && ccbank.getByte("detector",i) == DetectorType.HTCC.getDetectorId())
+        if(ccbank!=null) IntStream.range(0,ccbank.getRows()).filter(i -> ccbank.getShort("pindex",i) == ipart && ccbank.getByte("detector",i) == DetectorType.HTCC.getDetectorId())
             .findFirst().ifPresent(i -> candidate.setNPHE(ccbank.getFloat("nphe", i)));
 
-        if(calbank!=null) IntStream.range(0,calbank.rows())
+        if(calbank!=null) IntStream.range(0,calbank.getRows())
             .filter(i -> calbank.getShort("pindex",i) == ipart && calbank.getByte("detector",i) == DetectorType.ECAL.getDetectorId())
             .forEach(i -> {
             if(calbank.getByte("layer",i) == 1) {
@@ -56,7 +56,7 @@ public class ElectronCandidate extends Candidate {
                 candidate.setECOUTenergy(calbank.getFloat("energy",i));
         });
 
-        if(trajbank!=null) IntStream.range(0,trajbank.rows())
+        if(trajbank!=null) IntStream.range(0,trajbank.getRows())
             .filter(i -> trajbank.getShort("pindex",i) == ipart && trajbank.getByte("detector",i) == DetectorType.DC.getDetectorId())
             .forEach(i -> {
             if(trajbank.getByte("layer",i) == 6)
