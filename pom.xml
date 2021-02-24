@@ -3,13 +3,13 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>uconn.utils</groupId>
     <artifactId>uconn-java-utils</artifactId>
-    <version>v0.3-alpha</version>
+    <version>v0.4-alpha</version>
     <packaging>jar</packaging>
     <dependencies>
       <dependency>
         <groupId>org.jlab.coat</groupId>
         <artifactId>coat-libs</artifactId>
-        <version>6.5.9-SNAPSHOT</version>
+        <version>6.5.13-SNAPSHOT</version>
          <type>jar</type>
       </dependency>
     </dependencies>
