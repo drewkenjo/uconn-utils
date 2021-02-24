@@ -3,7 +3,7 @@ package uconn.utils.pid.stefan;
 import org.jlab.clas.physics.LorentzVector;
 import org.jlab.detector.base.DetectorType;
 import java.util.stream.IntStream;
-import org.jlab.io.base.DataBank;
+import org.jlab.jnp.hipo4.data.Bank;
 import uconn.utils.pid.Candidate;
 
 public class PionCandidate extends Candidate {
@@ -36,7 +36,7 @@ public class PionCandidate extends Candidate {
     * return PionCandidate instance
     * @param applycuts the list of cuts required to apply
     */
-    public static PionCandidate getPionCandidate(int ipart, DataBank recbank, DataBank trajbank) {
+    public static PionCandidate getPionCandidate(int ipart, Bank recbank, Bank trajbank) {
         PionCandidate candidate = new PionCandidate();
         if(recbank!=null) {
             candidate.setPID(recbank.getInt("pid",ipart));
@@ -46,7 +46,7 @@ public class PionCandidate extends Candidate {
             candidate.setPxyz(recbank.getFloat("px",ipart), recbank.getFloat("py",ipart), recbank.getFloat("pz",ipart));
         }
 
-        if(trajbank!=null) IntStream.range(0,trajbank.rows())
+        if(trajbank!=null) IntStream.range(0,trajbank.getRows())
             .filter(i -> trajbank.getShort("pindex",i) == ipart && trajbank.getByte("detector",i) == DetectorType.DC.getDetectorId())
             .forEach(i -> {
             if(trajbank.getByte("layer",i) == 6)
