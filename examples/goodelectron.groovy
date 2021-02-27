@@ -1,4 +1,7 @@
-import org.jlab.io.hipo.HipoDataSource
+import org.jlab.jnp.hipo4.io.HipoReader
+import org.jlab.jnp.hipo4.data.Bank
+import org.jlab.jnp.hipo4.data.Event
+import org.jlab.jnp.hipo4.data.SchemaFactory
 import org.jlab.clas.physics.LorentzVector
 import uconn.utils.pid.stefan.ElectronCandidate
 import uconn.utils.pid.stefan.ElectronCandidate.Cut
@@ -6,13 +9,18 @@ import uconn.utils.pid.stefan.ElectronCandidate.Cut
 def banknames = ['RUN::config', 'REC::Particle','REC::Calorimeter','REC::Cherenkov','REC::Traj']
 
 args.each{fname->
-  def reader = new HipoDataSource()
+  def reader = new HipoReader()
   reader.open(fname)
+  def event = new Event()
+  def factory = reader.getSchemaFactory()
+  def banks = banknames.collect{new Bank(factory.getSchema(it))}
 
-  while(reader.hasEvent()) {
-    def event = reader.getNextEvent()
-    if(banknames.every{event.hasBank(it)}) {
-      def (runb,partb,calb,ccb,trajb) = banknames.collect{event.getBank(it)}
+  while(reader.hasNext()) {
+    reader.nextEvent(event)
+    banks.each{event.read(it)}
+
+    if(banks.every()) {
+      def (runb,partb,calb,ccb,trajb) = banks
 
       def ipart = 0
       def candidate = ElectronCandidate.getElectronCandidate(ipart, partb, calb, ccb, trajb)
