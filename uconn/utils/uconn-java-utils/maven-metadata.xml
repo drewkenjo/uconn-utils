@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>uconn.utils</groupId>
+  <artifactId>uconn-java-utils</artifactId>
+  <versioning>
+    <release>v0.5-alpha</release>
+    <versions>
+      <version>v0.5-alpha</version>
+    </versions>
+    <lastUpdated>20210427150456</lastUpdated>
+  </versioning>
+</metadata>
